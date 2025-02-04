@@ -21,7 +21,7 @@ $$
 \det(A) = 0
 $$
 
-This occurs when at least one eigenvalue \( \lambda_i = 0 \). The eigenvector corresponding to the zero eigenvalue defines the **null space** of the matrix, while the eigenvector corresponding to any nonzero eigenvalue defines the **column space**. For example, consider the singular matrix:
+This occurs when at least one eigenvalue $\lambda_i = 0$. The eigenvector corresponding to the zero eigenvalue defines the **null space** of the matrix, while the eigenvector corresponding to any nonzero eigenvalue defines the **column space**. For example, consider the singular matrix:
 
 $$
 A_{\text{singular}} = \begin{bmatrix} 1 & 2 \\ 4 & 8 \end{bmatrix}
@@ -67,7 +67,7 @@ $$
 \lambda_i' = \lambda_i + a
 $$
 
-For the zero eigenvalue of the singular matrix \( \lambda_1 = 0 \), we now have:
+For the zero eigenvalue of the singular matrix $\lambda_1 = 0$, we now have:
 
 $$
 \lambda_1' = a
@@ -78,7 +78,7 @@ This small perturbation lifts the eigenvalue from zero, making the matrix invert
 ---
 
 ## **4. Why the Eigenvector Structure Is Preserved**
-The eigenvector structure remains the same because perturbing the eigenvalues **does not alter the underlying geometry of the column and null spaces.** The eigenvectors of the non-singular matrix \( A_{\text{non-singular}} \) are the same as those of the singular matrix \( A_{\text{singular}} \), meaning:
+The eigenvector structure remains the same because perturbing the eigenvalues **does not alter the underlying geometry of the column and null spaces.** The eigenvectors of the non-singular matrix $A_{\text{non-singular}}$ are the same as those of the singular matrix $A_{\text{singular}}$, meaning:
 
 $$
 A_{\text{non-singular}} \mathbf{v} = \lambda' \mathbf{v}
@@ -112,14 +112,14 @@ $$
 The eigenvector structure of the singular matrix dictates how the non-singular matrix transforms vectors. The **column space direction** defines the primary scaling direction, while the **null space direction** governs collapse and sensitivity to perturbations.
 
 ### **6.2 Numerical Stability**
-Near-singular matrices are prone to instability because small perturbations in their eigenvalues lead to large changes in their inverses. This instability arises because the **small eigenvalue \( \lambda_1' \) introduces large scaling factors in the inverse transformation**:
+Near-singular matrices are prone to instability because small perturbations in their eigenvalues lead to large changes in their inverses. This instability arises because the **small eigenvalue $\lambda_1'$ introduces large scaling factors in the inverse transformation**:
 
 $$
 A^{-1} = \frac{1}{\lambda_1'}
 $$
 
 ### **6.3 Regularization Techniques**
-Regularization methods, such as adding \( \lambda I \) in machine learning, work by artificially increasing the small eigenvalue, effectively stabilizing the inverse:
+Regularization methods, such as adding $\lambda I$ in machine learning, work by artificially increasing the small eigenvalue, effectively stabilizing the inverse:
 
 $$
 (X^T X + \lambda I)^{-1}
