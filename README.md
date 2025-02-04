@@ -93,6 +93,7 @@ where:
 ---
 
 ## **4. Extending to Non-Singular Matrices**
+
 When the matrix is **perturbed slightly**, such as adding a small perturbation $\epsilon I$, the matrix becomes **non-singular**:
 
 $$
@@ -111,21 +112,32 @@ $$
 \lambda_1' = \epsilon
 $$
 
-### **4.1 Behavior of Non-Singular Matrices**
-Initially, the nonzero eigenvalue $\lambda_2$ from the **singular base matrix dominates the transformation**, meaning that:
+### **4.1 The Two Singular Matrices as Driving Forces**
+One critical insight is that a **non-singular 2×2 matrix is governed by two associated singular matrices**, each representing a collapse mode when either eigenvalue is zero. These two singular matrices emerge naturally as by-products of eigen decomposition, but their importance lies in their role as **the structural backbone of the non-singular matrix**.
 
-$$
-A' \mathbf{x} \approx \lambda_2 c_2 \mathbf{v}_2
-$$
+Given a non-singular matrix $A'$, we can identify:
+- The first singular matrix $A_1$ corresponding to the collapse along the eigenvector of $\lambda_1$.
+- The second singular matrix $A_2$ corresponding to the collapse along the eigenvector of $\lambda_2$.
 
-As the perturbation $\epsilon$ increases, the influence of the **newly perturbed eigenvalue $\lambda_1' = \epsilon$** grows. However, until $\epsilon$ becomes comparable to or larger than $\lambda_2$, the matrix’s behavior remains **dominated by the column space of the original singular matrix.**
+The behavior of the non-singular matrix is a **blend of these two singular matrices**, with their influence depending on the relative magnitudes of $\lambda_1'$ and $\lambda_2$. Initially, the nonzero eigenvector associated with the **dominant singular matrix** governs the transformation, while the perturbation gradually shifts the behavior toward a more stable configuration.
+
+### **4.2 The Influence of Non-Diagonal Elements**
+The **non-diagonal elements of the matrix** play a significant role in how the two singular matrices interact and govern the transformation behavior. These elements determine the coupling between variables and affect how much of the input vector is projected into the column space or null space of the singular matrices.
 
 ---
 
 ## **5. Column Space as the Governing Structure**
-The **column space** of the original singular matrix dictates how the perturbed matrix behaves because:
-- **The nonzero eigenvector from the column space controls the primary direction of output vectors.**
-- The perturbed eigenvalue $\epsilon$ does not immediately dominate the transformation—there is a threshold effect.
+The **column space of the original singular matrices dictates how the perturbed matrix behaves** because:
+- The **nonzero eigenvector from each singular matrix controls the primary direction of output vectors**.
+- The two collapse modes associated with the singular matrices form a framework within which the perturbed matrix operates.
+
+For small perturbations, the matrix’s behavior can be approximated as:
+
+$$
+A' \mathbf{x} \approx A_1 \mathbf{x} + A_2 \mathbf{x}
+$$
+
+As the perturbation $\epsilon$ grows, the contribution of the **perturbed eigenvalue $\lambda_1' = \epsilon$** gradually surpasses the influence of the singular matrices.
 
 ---
 
@@ -142,7 +154,8 @@ $$
 \frac{\lambda_1'}{\lambda_2} = \frac{\epsilon}{\lambda_2}
 $$
 
-For small $\epsilon$, this ratio is small, indicating that the **column space eigenvector dominates the transformation**.
+For small $\epsilon$, this ratio is small, indicating that the **column space eigenvector associated with the dominant singular matrix governs the transformation**.
+
 
 ---
 
@@ -150,23 +163,31 @@ For small $\epsilon$, this ratio is small, indicating that the **column space ei
 1. **Numerical Stability:**  
    Near-singular matrices are prone to instability because the influence of the **small eigenvalue $\lambda_1'$** can cause large errors when inverted:
 
-$$
-A'^{-1} = \frac{1}{\lambda_1'}
-$$
+   $$
+   A'^{-1} = \frac{1}{\lambda_1'}
+   $$
 
 2. **Regularization Techniques:**  
    Regularization methods stabilize solutions by effectively increasing the small eigenvalue $\lambda_1'$ and avoiding instability:
 
-$$
-(X^T X + \lambda I)^{-1}
-$$
+   $$
+   (X^T X + \lambda I)^{-1}
+   $$
 
 3. **Control Systems:**  
    Near-singular matrices exhibit sensitivity to disturbances, but understanding the dominance of the **column space eigenvector** helps design stabilization strategies.
 
 ---
 
-## **8. Conclusion**
-Singular matrices are more than degenerate cases of non-invertible systems—they provide the **foundation for understanding the behavior of non-singular matrices.** The column space, through its nonzero eigenvector, governs the initial behavior of perturbed matrices, and eigenvalues act as **additive magnifiers**. Segregating the behaviors of forward and inverse transformations reveals how matrix transformations lead to **instability, sensitivity, and solutions through regularization.**
 
-The non-invertibility of singular matrices lies in their **inverse transformation**, where infinitely many solutions exist due to the null space component. Without an inverse matrix, the system cannot uniquely resolve inputs, and any vector along the null space can be freely added to a particular solution. In contrast, in the **forward transformation**, singular matrices behave deterministically: they map any input to a unique output vector in the column space by discarding the null space component. Understanding this distinction is essential for designing stable systems and effectively applying regularization to mitigate instability.
+
+## **8. Conclusion**
+Singular matrices are more than degenerate cases of non-invertible systems—they provide the **foundation for understanding the behavior of non-singular matrices.** The key insight is that a **non-singular matrix inherits its behavior from two associated singular matrices**, each corresponding to a collapse mode defined by its eigenvalues. The column space of these singular matrices dictates the initial transformation behavior, and the perturbation of eigenvalues acts as **an additive magnifier**.
+
+The **non-diagonal elements and eigenvector directions** govern how the two singular matrices interact and blend in the forward transformation. In the inverse transformation, the non-invertibility of singular matrices leads to infinitely many solutions, while regularization mitigates instability by controlling the contribution of the perturbed eigenvalues.
+
+Understanding this dual role of singular matrices provides deeper insight into **numerical stability, regularization, and the geometry of matrix transformations.**
+
+
+
+
