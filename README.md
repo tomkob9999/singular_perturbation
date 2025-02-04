@@ -25,14 +25,16 @@ $$
 the singular matrices are constructed by collapsing its eigenvalues. Consider:
 
 1. **Singular Matrix 1:** Collapse the smaller eigenvalue $\lambda_{\min}$ to zero.
-   $$
-   A_{\text{singular}_1} = A - \lambda_{\min} I
-   $$
+
+$$
+A_{\text{singular}_1} = A - \lambda _ {\min} I
+$$
 
 2. **Singular Matrix 2:** Collapse the larger eigenvalue $\lambda_{\max}$ to zero.
-   $$
-   A_{\text{singular}_2} = A - \lambda_{\max} I
-   $$
+
+$$
+A_{\text{singular}_2} = A - \lambda _ {\max} I
+$$
 
 ---
 
